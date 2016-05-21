@@ -5,8 +5,7 @@
  */
 package bintree;
 
-/**
- *
+/** 
  * @author Larry
  */
 public class MyBinaryTree {
@@ -17,17 +16,27 @@ public class MyBinaryTree {
     }
     
     
+    /*this is the method accessible to outsiders with regards to inserting new
+    items into the tree */
     public void insert(int i){
         
         root = insert(root, i);
     }
     
+    /*This is the internal method that does the actual inserting using recursion *
+    * We use recursion because we need to insert at the last generation of the tree - 
+    not just  anywhere */
     private Node insert(Node n, int data){ 
+
+
         if(n==null){ 
             n  = new Node(data); 
         }
         else{
             
+            //we are also trying to sort the data while inserting, 
+            // hence, all values that are lower than this node's value go to the left
+            //while those greater than it go to the right
             if(data < n.value()){
                 
                 n.left = insert(n.left, data);
@@ -42,7 +51,7 @@ public class MyBinaryTree {
     }
     
     
-    
+    //this prints all the contents in the tree
     public void printInOrder(){
         
         printInOrder(root);
@@ -63,6 +72,9 @@ public class MyBinaryTree {
     }
     
     
+    //get the least item, we use the internal getleast method to scan the left side 
+    //recursively. The lowest value is always guaranteed to be in the left hand side of 
+    //the leftmost node, due to our insertion method.
     public int getMin(){
         
         return getLeast(root);
@@ -78,6 +90,10 @@ public class MyBinaryTree {
     
     
      /*@Get the maximum value in this tree */
+      //get the highest item, we use the internal getHighest method to scan the right side 
+    //recursively. The Highest value is always guaranteed to be in the right hand side of 
+    //the righttmost node, due to our insertion method.
+ 
     public int getMax(){
         
         return getHighest(root);
@@ -91,7 +107,8 @@ public class MyBinaryTree {
     }
     
     
-    
+    //count this node, then count the nodes under it.
+    //recursion rocks!
     private int countNodes(Node n){
        
         if(n==null) return 0;
@@ -109,6 +126,9 @@ public class MyBinaryTree {
         
     }
     
+
+    //search the root node, then the nodes under it, going left first and then right
+    //this search can be better optimized to perform in log(n) time.
     public boolean contains(int value){
         
         return exists(value, root);

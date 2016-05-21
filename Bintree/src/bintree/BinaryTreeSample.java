@@ -69,6 +69,8 @@ public class BinaryTreeSample {
             output("Value no "+ count+"; Enter -1 to finish inserting");
             
             num = sc.nextInt();
+
+            //just to move to the end of the line
             sc.nextLine();
             
             if(num!=-1){
@@ -82,10 +84,14 @@ public class BinaryTreeSample {
         }
     }
         
+        //handle all prints to the console
         private static void output(String message){
             System.out.println(message);
         }
     
+        
+        /*these methods are self descriptive */
+
         
         private static void lowest(){
             if(tree.isEmpty()){
